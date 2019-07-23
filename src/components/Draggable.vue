@@ -5,23 +5,32 @@
     <h2>draggable</h2>
     <draggable class="draggable" v-model="myArray" group="people" @start="drag=true" @end="drag=false">
       <div class="draggable-img-box" v-for="(item, index) in myArray" :key="index">
-        <img :src="item" />
+        <img :src="item.src" />
+        <span>{{item.cc}}</span>
         <a @click="deleteImage(index)"></a>
       </div>
     </draggable>
+    <a @click="addImg">添加图片</a>
+
+    <router-link :to="{ name: 'Three' }">泡泡</router-link>
   </div>
 </template>
 
 <script>
 import draggable from 'vuedraggable'
 export default {
-  name: 'HelloWorld',
+  name: 'Draggable',
   data () {
     return {
-      myArray: [
-        'https://ss0.baidu.com/94o3dSag_xI4khGko9WTAnF6hhy/image/h%3D300/sign=45e16856990a304e4d22a6fae1c9a7c3/ac4bd11373f08202e2518d6d45fbfbedaa641ba4.jpg',
-        'https://ss0.baidu.com/94o3dSag_xI4khGko9WTAnF6hhy/image/h%3D300/sign=f09901779bcad1c8cfbbfa274f3f67c4/83025aafa40f4bfb3b3a8f0c0d4f78f0f63618fb.jpg',
-        'https://ss0.baidu.com/94o3dSag_xI4khGko9WTAnF6hhy/image/h%3D300/sign=a1b9de84b8fd5266b82b3a149b199799/b21c8701a18b87d6070d7970090828381f30fd16.jpg']
+      myArray: [{
+        src: 'https://ss0.baidu.com/94o3dSag_xI4khGko9WTAnF6hhy/image/h%3D300/sign=45e16856990a304e4d22a6fae1c9a7c3/ac4bd11373f08202e2518d6d45fbfbedaa641ba4.jpg',
+        cc: '123'
+      },
+      {
+        src: 'https://ss0.baidu.com/94o3dSag_xI4khGko9WTAnF6hhy/image/h%3D300/sign=f09901779bcad1c8cfbbfa274f3f67c4/83025aafa40f4bfb3b3a8f0c0d4f78f0f63618fb.jpg',
+        cc: '1232'
+      }
+      ]
     }
   },
   components: {
@@ -30,6 +39,9 @@ export default {
   methods: {
     deleteImage (index) {
       this.myArray.splice(index, 1)
+    },
+    addImg () {
+      this.myArray.push('https://ss0.baidu.com/94o3dSag_xI4khGko9WTAnF6hhy/image/h%3D300/sign=a1b9de84b8fd5266b82b3a149b199799/b21c8701a18b87d6070d7970090828381f30fd16.jpg')
     }
   }
 }
